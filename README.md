@@ -49,8 +49,9 @@ you should be good to boot your computer now.
 
 **Step 5.** install the conda
 1. download conda from the [website](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) and install it.
-2. if you'd prefer that conda's base environment not be activated on startup, you can use `conda config --set auto_activate_base false`.
-3. create and activate the conda environmnet
+2. if you'd prefer that conda's base environment not be activated on startup, you can use
+   `conda config --set auto_activate_base false`.
+4. create and activate the conda environmnet with a specific python version.
    ```shell
    conda create -n first_env python=3.7
    conda activate first_env
