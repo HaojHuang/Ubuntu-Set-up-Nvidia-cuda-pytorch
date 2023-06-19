@@ -38,7 +38,7 @@ you should be good to boot your computer now.
 
 **Step 4.** install cudann **(to modify)**
 1. download the [cudnn](https://developer.nvidia.com/cudnn). It needs you to login in and verify your email.
-2. download the Deb file that fit your cuda and OS [not recommended!]. **Or** install it with the compressed file as show in the video above.**to do**
+2. download the Deb file that fit your cuda and OS [not recommended!]. **Or** install it with the compressed file as show in the video above.
 3. you can check whether cudnn is installed with `sudo apt search cudnn | grep installed` if you installed it with .deb. You can also check it
    with the [stackflow answers](https://stackoverflow.com/questions/31326015/how-to-verify-cudnn-installation).
    ```shell
