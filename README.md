@@ -17,6 +17,8 @@ Sometimes, you get a black screen and it's very annoying. To deal with the black
 7. enter the grub and it will update grub file that you modified in step 5
 8. enter the resume to boot the computer
 
+Or, if you find \etc\default\grub is an empty file and you can not find any solution, the blackscreen may be caused by the wrong version of nvidia-driver. Be cautious when you install third-party version of nvidia-driver, this may cause the blackscreen problem. In your GNU-GRUB window, you should be able to log in root account and download the right version of nvidia-driver, which can fix the blackscreen problem.
+
 you should be good to boot your computer now.
 
 **Step 2.** install the nvidia-driver
