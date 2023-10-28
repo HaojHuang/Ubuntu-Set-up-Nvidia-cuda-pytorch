@@ -5,7 +5,7 @@
 1. download [ubuntu image](https://releases.ubuntu.com/focal/) to your flash device
 2. download [rufus](https://rufus.ie/en/) to create the bootable USB
 
-Warning (10/27/2023): The current ubuntu22.04LTS image is not stable, it can't correctly install. But ubuntu20.04LTS and ubuntu23.04 is stable. You can update to ubuntu22.04 once you install ubuntu20.04, but it will cause nvidia-cuda-toolkit needs update.
+Warning (10/27/2023): The current ubuntu22.04LTS image is not stable, it can't correctly install. But ubuntu20.04LTS and ubuntu23.04 is stable. You can update to ubuntu22.04 once you install ubuntu20.04, but it will cause nvidia-cuda-toolkit needs update. Use chatGPT to help you debug.
 
 ### Black screen 
 Sometimes, you get a black screen and it's very annoying. To deal with the black screen:
