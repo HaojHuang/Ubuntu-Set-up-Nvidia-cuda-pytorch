@@ -24,9 +24,13 @@ you should be good to boot your computer now.
 
 **Step 2.** install the nvidia-driver
 1. `sudo apt update` + `sudo apt upgrade` + `sudo apt install gcc`
-2. `sudo apt install nvidia-driver-515 nvidia-dkms-515` Change the version number [515] of the driver that fits your gpu.
-3. remove the `nomodeset` from the grub with  `sudo nano \etc\default\grub` and update your grub with `sudo update-grub`. Note that without step 3, you cannot reboot your computer.
-4. reboot your computer and you can check whether the driver is installed with `nvidia-smi`
+2. `sudo apt remove --purge '^cuda-.*' '^libnvidia-.*'` and `sudo apt remove --purge '^nvidia-.*'`
+3. `sudo apt autoremove` and `sudo apt autoclean`
+4. `dpkg -l | grep -i nvidia` and `dpkg -l | grep -i cuda`
+5. `ubuntu-drivers devices`
+7. `sudo apt install nvidia-driver-515 nvidia-dkms-515` Change the version number [515] of the driver that fits your gpu.
+8. remove the `nomodeset` from the grub with  `sudo nano \etc\default\grub` and update your grub with `sudo update-grub`. Note that without step 8, you cannot reboot your computer. (do not need this step now)
+9. reboot your computer and you can check whether the driver is installed with `nvidia-smi`
 
 **Step 3.** install cuda. check [this video](https://www.youtube.com/watch?v=4gcqGxBIUnc&t=22s) before installing. You can install any version instead of the one shown in the video.
 1. download the [cuda toolkit](https://developer.nvidia.com/cuda-toolkit-archive) that fits your GPU driver and OS
