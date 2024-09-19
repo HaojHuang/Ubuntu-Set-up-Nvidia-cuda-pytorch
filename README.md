@@ -43,12 +43,16 @@ you should be good to boot your computer now.
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.1/lib64
     export CUDADIR=/usr/local/cuda-11.1
     ```
-5. `source ~/.bashrc` and you should be good to get the cuda installed. You can check it with `nvcc -V` with a new terminal.
+4. `source ~/.bashrc` and you should be good to get the cuda installed. You can check it with `nvcc -V` with a new terminal.
 
 **Step 4.** install cudann **(to modify)**
 1. download the [cudnn](https://developer.nvidia.com/cudnn). It needs you to login in and verify your email. 
-3. download the Deb file that fit your cuda and OS [not recommended!]. **Or** install it with the compressed file as show in the video above. `sudo dpkg -i cudnn-local-repo-ubuntu2004-8.6.0.163_1.0-1_amd64.deb` and  `sudo cp /var/cudnn-local-repo-*/cudnn-local-*-keyring.gpg /usr/share/keyrings/`
-4.  install the cuDNN runtime library, the developer library, and the code samples library.
+2. download the Deb file that fit your cuda and OS [not recommended!]. **Or** install it with the compressed file as show in the video above.
+   ```
+       sudo dpkg -i cudnn-local-repo-ubuntu2004-8.6.0.163_1.0-1_amd64.deb
+       sudo cp /var/cudnn-local-repo-*/cudnn-local-*-keyring.gpg /usr/share/keyrings/
+   ```
+3.  install the cuDNN runtime library, the developer library, and the code samples library.
     ```
     sudo apt update
     sudo apt upgrade
@@ -56,7 +60,7 @@ you should be good to boot your computer now.
     sudo apt-get install libcudnn8-dev=8.6.0.163-1+cuda11.8
     sudo apt-get install libcudnn8-samples=8.6.0.163-1+cuda11.8
     ```
-6.  you can check whether cudnn is installed with `sudo apt search cudnn | grep installed` if you installed it with .deb. You can also check it
+4.  you can check whether cudnn is installed with `sudo apt search cudnn | grep installed` if you installed it with .deb. You can also check it
    with the [stackflow answers](https://stackoverflow.com/questions/31326015/how-to-verify-cudnn-installation).
    ```shell
    function lib_installed() { /sbin/ldconfig -N -v $(sed 's/:/ /' <<< $LD_LIBRARY_PATH) 2>/dev/null | grep $1; }
@@ -68,7 +72,7 @@ you should be good to boot your computer now.
 1. download conda from the [website](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html) and install it.
 2. if you'd prefer that conda's base environment not be activated on startup, you can use
    `conda config --set auto_activate_base false`.
-4. create and activate the conda environmnet with a specific python version.
+3. create and activate the conda environmnet with a specific python version.
    ```shell
    conda create -n first_env python=3.7
    conda activate first_env
