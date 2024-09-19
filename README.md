@@ -23,26 +23,40 @@ Or, if you find \etc\default\grub is an empty file and you can not find any solu
 you should be good to boot your computer now.
 
 **Step 2.** install the nvidia-driver
-1. `sudo apt update` + `sudo apt upgrade` + `sudo apt install gcc`
-2. `sudo apt install nvidia-driver-515 nvidia-dkms-515` Change the version number [515] of the driver that fits your gpu.
-3. remove the `nomodeset` from the grub with  `sudo nano \etc\default\grub` and update your grub with `sudo update-grub`. Note that without step 3, you cannot reboot your computer.
+1. `sudo apt update` + `sudo apt upgrade` + `sudo apt install gcc` + `sudo apt install build-essential`
+2. `sudo apt install nvidia-driver-535 nvidia-dkms-535` Change the version number [535] of the driver that fits your gpu.
+3. ((don't need for now) )remove the `nomodeset` from the grub with  `sudo nano \etc\default\grub` and update your grub with `sudo update-grub`. Note that without step 3, you cannot reboot your computer.
 4. reboot your computer and you can check whether the driver is installed with `nvidia-smi`
 
 **Step 3.** install cuda. check [this video](https://www.youtube.com/watch?v=4gcqGxBIUnc&t=22s) before installing. You can install any version instead of the one shown in the video.
-1. download the [cuda toolkit](https://developer.nvidia.com/cuda-toolkit-archive) that fits your GPU driver and OS
-2. select runfile (local) as the Installer Type and it will generate the Installation Instructions. Note that it will be better to have `chmod +x` as suggested in the video. Just select install the **cuda** without the driver, the sample, and the document, as shown in the video.
+1. download the [cuda toolkit](https://developer.nvidia.com/cuda-toolkit-archive) that fits your GPU driver and OS. ( or `wget  https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda_11.8.0_520.61.05_linux.run`)
+2. select runfile (local) as the Installer Type and it will generate the Installation Instructions. Note that it will be better to have `chmod +x` as suggested in the video. Just select install the **cuda** without the driver, the sample, and the document, as shown in the video. (or `sudo sh cuda_11.8.0_520.61.05_linux.run --toolkit --silent --override`)
 3. `sudo nano ~/.bashrc` and add the path to your bashrc file. *Note change the 11.1 for your installed cuda version*
-    ```shell
+    ```
+    export PATH=/usr/local/cuda-11.8/bin${PATH:+:${PATH}}
+    export LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    ```
+    
+   The below are out of date fro cuda 11.1 
+   ```shell
     export PATH=$PATH:/usr/local/cuda-11.1/bin 
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.1/lib64
     export CUDADIR=/usr/local/cuda-11.1
     ```
-4. `source ~/.bashrc` and you should be good to get the cuda installed. You can check it with `nvcc -V` with a new terminal.
+5. `source ~/.bashrc` and you should be good to get the cuda installed. You can check it with `nvcc -V` with a new terminal.
 
 **Step 4.** install cudann **(to modify)**
-1. download the [cudnn](https://developer.nvidia.com/cudnn). It needs you to login in and verify your email.
-2. download the Deb file that fit your cuda and OS [not recommended!]. **Or** install it with the compressed file as show in the video above.
-3. you can check whether cudnn is installed with `sudo apt search cudnn | grep installed` if you installed it with .deb. You can also check it
+1. download the [cudnn](https://developer.nvidia.com/cudnn). It needs you to login in and verify your email. 
+3. download the Deb file that fit your cuda and OS [not recommended!]. **Or** install it with the compressed file as show in the video above. `sudo dpkg -i cudnn-local-repo-ubuntu2004-8.6.0.163_1.0-1_amd64.deb` and  `sudo cp /var/cudnn-local-repo-*/cudnn-local-*-keyring.gpg /usr/share/keyrings/`
+4.  install the cuDNN runtime library, the developer library, and the code samples library.
+    ```
+    sudo apt update
+    sudo apt upgrade
+    sudo apt-get install libcudnn8=8.6.0.163-1+cuda11.8
+    sudo apt-get install libcudnn8-dev=8.6.0.163-1+cuda11.8
+    sudo apt-get install libcudnn8-samples=8.6.0.163-1+cuda11.8
+    ```
+6.  you can check whether cudnn is installed with `sudo apt search cudnn | grep installed` if you installed it with .deb. You can also check it
    with the [stackflow answers](https://stackoverflow.com/questions/31326015/how-to-verify-cudnn-installation).
    ```shell
    function lib_installed() { /sbin/ldconfig -N -v $(sed 's/:/ /' <<< $LD_LIBRARY_PATH) 2>/dev/null | grep $1; }
